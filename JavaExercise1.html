@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Challenge 1 </title>
+        <style>
+
+.dot {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#dot1 {
+
+  background-color: rgb(255, 0, 0);
+
+}
+
+#dot2 {
+
+  background-color: rgb(0, 0, 255);
+
+}
+
+#dot3 {
+
+  background-color: rgb(0, 255, 0);
+
+}
+
+        </style>
+    </head>
+    <body>
+
+        <span class="dot" id="dot1" onclick="hide1()"></span>
+        <span class="dot" id="dot2" onclick="hide2()"></span>
+        <span class="dot" id="dot3" onclick="hide3()"></span>
+
+        <script>
+
+            function hide1(){
+
+                var x = document.getElementById("dot1");
+                x.style.display = "none";
+            }
+
+            function hide2(){
+
+                var x = document.getElementById("dot2");
+                x.style.display = "none";
+            }
+
+            function hide3(){
+
+                var x = document.getElementById("dot3");
+                x.style.display = "none";
+            }
+
+        </script>
+    </body>
+</html>

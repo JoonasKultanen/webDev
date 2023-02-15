@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+<style>
+
+body {
+
+    background-color: lightskyblue;
+
+}
+.content {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 600px;
+    height: 450px;
+    margin: auto;
+    border-radius: 10%;
+    border: 5px solid mediumslateblue;
+
+}
+.content .title {
+
+    font-size: 50px;
+    font-weight: 800;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    text-decoration: underline;
+
+}
+.content .temperature {
+
+    color: darkblue;
+    background-color: azure;
+    width: 350px;
+    height: 200px;
+    text-align: center;
+    margin: auto;
+    margin-top: 80px;
+    border-radius: 20%;
+    border: 5px solid lightslategrey;
+
+}
+.content .temperature .title {
+
+    font-size: 30px;
+    font-weight: 800;
+    margin: auto;
+    text-align: center;
+    text-decoration: underline;
+
+}
+.content .temperature #temp {
+
+    font-size: 50px;
+    font-weight: 900;
+}
+
+</style>
+<body>
+
+    <div class="content">
+        <h1 class = "title">Tampere Weather</h1>
+        <div class="temperature">
+            <h2 class = "title">Temperature</h1>
+            <p id = "temp"></p>
+        </div>
+    </div>
+
+    <script>
+
+        updateView = (weatherData) => {
+            const details = weatherData.properties.timeseries[2].data.instant.details
+            console.log(details)
+            document.getElementById("temp").innerHTML = details.air_temperature + ' &#8451;'
+        }
+
+        fetchWeather = async() => {
+            try {
+                const response = await fetch('https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=61.4978&lon=23.7610')
+                const data = await response.json()
+                console.log(data)
+                updateView(data)
+            }   catch(error){
+                console.error(error);
+            }
+        }
+
+        fetchWeather()
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Challenge 4 </title>
+
+<!--Creating all the id and classes that are needed-->
+
+        <style>
+
+        .square {
+
+            height: 550px;
+            width: 400px;
+            background-color: lightsteelblue;
+            position: relative;
+            text-align: center;
+            outline: 2px solid darkslateblue;
+            margin-top: 15px;
+            margin-left: 15px;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif; 
+            padding: 5px;
+
+        }
+        
+        .squareMini {
+
+            height: 450px;
+            width: 390px;
+            background-color: azure;
+            position: absolute;
+            outline: 2px solid lightslategray;
+            margin-left: 5px;
+            margin-bottom: 5px;
+
+        }
+
+        .container{
+
+            display: flex;
+
+        }
+
+        .question {
+
+            width: 110px;
+            font-size: 30px;
+            color: black;
+            text-align: left;
+            margin-left: 25px;
+            margin-right: 25px;
+            margin-top: 50px;
+
+        }
+
+        .input {
+
+            font-size: 30px;
+            color: black;
+            width: 60px;
+            height: 50px;
+            text-align: center;
+            margin-top: 45px;
+            
+        }
+
+        .finalScore {
+
+            color: limegreen;
+            font-size: 30px;
+            margin-top: 30px;
+
+        }
+
+        .button {
+
+            width: 90px;
+            height: 40px;
+            background-color: turquoise;
+            border-radius: 10%;
+            font-size: 15px;
+            margin-top: 30px;
+            margin-left: 10px;
+            margin-right: 10px;
+
+        }
+
+        .feedback {
+
+            font-size: 35px;
+            text-align: right;
+            margin-left: 25px;
+            margin-right: 25px;
+            margin-top: 50px;
+
+        }
+
+        </style>
+    </head>
+    <body>
+
+        <!--Creating the structure of the page-->
+
+    <div class="square">
+
+        <p> Multiplication Game </p>
+        <div class="squareMini">
+
+            <div class="container">
+                <div class="question" id="question1"></div>
+                <input type="number" class="input" id="input1">
+                <div class="feedback" id="feedback1"></div>
+            </div>
+                
+            
+            <div class="container">
+                <div class="question" id="question2"></div>
+                <input type="number" class="input" id="input2">
+                <div class="feedback" id="feedback2"></div>
+            </div>           
+            
+
+            <div class="container">
+                <div class="question" id="question3"></div>
+                <input type="number" class="input" id="input3">
+                <div class="feedback" id="feedback3"></div>
+            </div>
+            
+            
+            <div class="finalScore" id="finalScore"></div>
+
+            <div id="buttons">
+                <button class="button" id="button1" onclick="answerCheck()"> Check </button>
+                <button class="button" id="button2" onclick="reset()"> Reset </button>
+                <button class="button" id="button3" onclick="solve()"> Solve </button>
+            </div>
+        </div>
+
+    </div>
+
+        <script>
+
+            // Creating all the variables that are needed for the program
+            var num1, num2, num3, num4, num5, num6;
+            var question1, question2, question3;
+            var answer1, answer2, answer3;
+            var input1, input2, input3;
+            var feedback1, feedback2, feedback3;
+            var amount = 0;
+            var final;
+            
+            //Starting the game by running the function once
+            newQuestions();
+
+            //Function that creates the equations
+            function newQuestions() {
+
+                num1 = Math.round(Math.random() * 10);
+                num2 = Math.round(Math.random() * 10);
+                num3 = Math.round(Math.random() * 10);
+                num4 = Math.round(Math.random() * 10);
+                num5 = Math.round(Math.random() * 10);
+                num6 = Math.round(Math.random() * 10);            
+
+                question1 = document.getElementById("question1");
+                question1.innerHTML = num1 + " x " + num2 + " =";
+                answer1 = (num1 * num2)
+
+                question2 = document.getElementById("question2");
+                question2.innerHTML = num3 + " x " + num4 + " =";
+                answer2 = (num3 * num4)
+
+                question3 = document.getElementById("question3");
+                question3.innerHTML = num5 + " x " + num6 + " =";
+                answer3 = (num5 * num6)
+
+            }
+
+            //Function that checks the answers and gives feedback depending how you answered
+            
+            function answerCheck(){
+
+                feedback1 = document.getElementById("feedback1");
+                input1 = document.getElementById("input1").value;
+
+                if(input1 != answer1){
+
+                    feedback1.innerHTML = ":-(";
+
+                }
+                else if (input1 == answer1) {
+
+                    feedback1.innerHTML = ":-)";
+                    amount++;
+
+                }
+
+                feedback2 = document.getElementById("feedback2");
+                input2 = document.getElementById("input2").value;
+
+                if(input2 != answer2){
+
+                    feedback2.innerHTML = ":-(";
+
+                }
+                else if (input2 == answer2) {
+
+                    feedback2.innerHTML = ":-)";
+                    amount++;
+
+                }
+
+                feedback3 = document.getElementById("feedback3");
+                input3 = document.getElementById("input3").value;
+
+                if(input3 != answer3){
+
+                    feedback3.innerHTML = ":-(";
+
+                }
+                else if (input3 == answer3) {
+
+                    feedback3.innerHTML = ":-)";
+                    amount++;
+
+                }
+
+                final = document.getElementById("finalScore");
+                
+                if(amount == 3){
+
+                    final.innerHTML = "3/3, Well done!";
+
+                }
+                else if(amount == 2){
+
+                    final.innerHTML = "2/3, Almost there!";
+
+                }
+                else if(amount == 1){
+
+                    final.innerHTML = "1/3, Good try!";
+
+                }
+                else if(amount == 0){
+
+                    final.innerHTML = "0/3, Better luck next time!";
+
+                }
+
+            } 
+
+            //Function that resets everything
+            //Gives you new equations and erases previous feedback
+            function reset(){
+
+                amount = 0;
+
+                document.getElementById("input1").value = "";
+                document.getElementById("input2").value = "";
+                document.getElementById("input3").value = "";
+
+                feedback1.innerHTML = "";
+                feedback2.innerHTML = "";
+                feedback3.innerHTML = "";
+
+                final.innerHTML = "";
+
+                newQuestions();
+
+            }
+
+            //Pastes the answer to the equations into the the input boxes
+            function solve(){
+
+                document.getElementById("input1").value = answer1;
+                document.getElementById("input2").value = answer2;
+                document.getElementById("input3").value = answer3;
+
+            }
+
+
+        </script>
+    </body>
+</html>

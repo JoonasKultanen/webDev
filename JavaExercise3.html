@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Challenge 3 </title>
+        <style type="text/css">
+           body {
+               font-family: Arial, Helvetica, sans-serif;
+           }
+           .bold {
+               font-weight: bold;
+           }
+           #shape {
+                background-color: red;
+                width: 150px;
+                height: 150px;
+                position: relative;
+                top: 100px;
+                left: 100px;
+                color: #3b1e1e;
+            }
+            </style>
+    </head>
+    <body>
+        <h1>Reaction game</h1>
+        <p>Click on the red square</p>
+        <p>Your time: <span id="result"></span>s.</p>
+        <div id="shape"></div>
+
+        <script>
+           
+            let startTime = new Date().getTime();
+
+            function show() {
+                
+                const size = (Math.random() * 150) + 50;
+                document.getElementById("shape").style.width = size + "px";
+                document.getElementById("shape").style.height = size + "px";
+
+                if(Math.random() > 0.5) {
+                    document.getElementById("shape").style.borderRadius = "50%";
+                }
+                else {
+                    document.getElementById("shape").style.borderRadius = "0%";
+                }
+                document.getElementById("shape").style.display = "block";
+                startTime = new Date().getTime();
+            }
+
+            document.getElementById("shape").onclick = function() {
+                document.getElementById("shape").style.display = "none";
+                const endTime = new Date().getTime();
+                const elapsedTime = (endTime - startTime) / 1000;
+                document.getElementById("result").innerHTML = elapsedTime;
+                setTimeout(show, Math.random() * 2000);
+            }
+        
+        
+        </script>
+    </body>
+</html>
